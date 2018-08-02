@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Instagrams</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @instagrams.each do |instagram| %>
+
+          <% user = User.find_by(id: instagram.user_id) %>
+      <tr>
+        <td><%= instagram.image %></td>
+        <td><%= instagram.content %></td>
+        <td><%= link_to '詳細画面', instagram %></td>
+          <td><% if logged_in? && current_user.id == instagram.user_id %>
+        <%= link_to "編集する", edit_instagram_path(instagram.id), data: { confirm: '編集しますか？' } %></td>
+        <td><%= link_to '削除する', instagram, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+<br>
+    <% end %>
+  </tbody>
+</table>
+  <% end %>
+<br><br><br>
+<%= link_to 'New Instagram', new_instagram_path %>

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @instagram.image %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @instagram.content %>
+</p>
+
+<% unless @instagram.user_id == current_user.id %>
+  <% if @favorite.present? %>
+    <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to 'お気に入りする', favorites_path(instagram_id: @instagram.id), method: :post, class: 'btn btn-primary' %>
+  <% end %>
+</div>
+<% end %>
+
+
+
+
+<%= link_to 'Edit', edit_instagram_path(@instagram) %>
+|
+<%= link_to 'Back', instagrams_path %>

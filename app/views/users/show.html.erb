@@ -1,0 +1,19 @@
+<h1><%= @user.name %>のページ</h1>
+<p>メールアドレス: <%= @user.email %></p
+
+  <hr>
+  <h3>お気に入りブログ一覧</h3>
+  <% @user.favorite_instagrams.order(created_at: :desc).each do |instagram| %>
+    <div class="panel panel-default">
+      <div class="row">
+        <p class="col-sm-3 title"><%= instagram.image %></p>
+        <p class="col-sm-9 content"><%= instagram.content %></p>
+      </div>
+      <div class="row">
+        <% user = User.find_by(id: instagram.user_id) %>
+        <p class="col-sm-3"><%= user.name %></p>
+        <p class="col-sm-offset-3 col-sm-2 created_at"><%= distance_of_time_in_words_to_now(instagram.created_at) %></p>
+        <p class="col-sm-4"><%= link_to '全文　', instagram_path(instagram.id), class: "glyphicon glyphicon-align-left" %>
+      </div>
+    </div>
+  <% end %>
