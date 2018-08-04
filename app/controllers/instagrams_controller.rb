@@ -1,6 +1,5 @@
 class InstagramsController < ApplicationController
   before_action :set_instagram, only: %i[show edit update destroy]
-
   # GET /instagrams
   # GET /instagrams.json
   def index
@@ -35,6 +34,7 @@ class InstagramsController < ApplicationController
     @instagram.user_id = current_user.id
     respond_to do |format|
       if @instagram.save
+        InstaMailer.insta_mail(@instagram).deliver
         format.html { redirect_to @instagram, notice: '投稿しました' }
         format.json { render :show, status: :created, location: @instagram }
       else
@@ -81,7 +81,6 @@ class InstagramsController < ApplicationController
     @instagram = Instagram.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def instagram_params
     params.require(:instagram).permit(:image, :content)
   end
