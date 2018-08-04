@@ -1,7 +1,7 @@
+root to: 'instagrams#index'
+
 Rails.application.routes.draw do
   get 'sessions/new'
-
-  root to: 'instagrams#index'
 
   resources :instagrams do
     collection do
