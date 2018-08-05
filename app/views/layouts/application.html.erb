@@ -3,28 +3,38 @@
   <head>
     <title>Insta</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
-    <% end %>
+    <!--% flash.each do |key, value| %-->
+      <!--%= content_tag(:div, value, class: "#{key}")%-->
+    <!--% end %-->
 
-    <%= link_to root_path do %>
-    Home
-  <% end %>
-  <br>
   <% if logged_in? %>
    ようこそ <strong><%= link_to current_user.name, user_path(current_user.id) %></strong> さん
-    <%= link_to "Profile", user_path(current_user.id) %>
-    <%= link_to "Logout", session_path(current_user.id), method: :delete %>
+   <br>
+    <%= link_to "home", root_path , class: "btn btn-success btn-normal" %>
+    <%= link_to "Profile", user_path(current_user.id) , class: "btn btn-info btn-normal" %>
+    <%= link_to "Logout", session_path(current_user.id), class: "btn btn-warning btn-normal",method: :delete %>
   <% else %>
-    <%= link_to "Sign up", new_user_path %>
-    <%= link_to "Login", sessions_new_path %>
+    <%= link_to "Sign up", new_user_path, class: "btn btn-warning btn-normal" %>
+    <%= link_to "Login", sessions_new_path , class: "btn btn-warning btn-normal"%>
   <% end %>
+
+
   <%= yield %>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <p class="copyright text-muted">Copyright &copy; Emi Oikawa 2018</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
