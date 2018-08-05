@@ -1,10 +1,10 @@
 class InstagramsController < ApplicationController
+  before_action :login_check, only: %i[new edit show destroy]
   before_action :set_instagram, only: %i[show edit update destroy]
   # GET /instagrams
   # GET /instagrams.json
   def index
     @instagrams = Instagram.all
-    @my_favorites = current_user.try(:favorites)
   end
 
   # GET /instagrams/1
@@ -74,14 +74,19 @@ class InstagramsController < ApplicationController
     render :new if @instagram.invalid?
   end
 
+  def login_check
+    if logged_in?
+    else redirect_to new_session_path
+    end
+  end
+
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_instagram
     @instagram = Instagram.find(params[:id])
   end
 
   def instagram_params
-    params.require(:instagram).permit(:image, :content)
+    params.require(:instagram).permit(:image, :content, :image_cache)
   end
 end
