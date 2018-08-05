@@ -1,20 +1,32 @@
 <h1><%= @user.name %>のページ</h1>
-<p>メールアドレス: <%= @user.email %></p
-
-  <hr>
-  <h3>お気に入りブログ一覧</h3>
-  <% @user.favorite_instagrams.order(created_at: :desc).each do |instagram| %>
-    <div class="panel panel-default">
-      <div class="row">
-        <p class="col-sm-3 title"><%= image_tag(instagram.image, :size => "120x80") %></p>
-        <p class="col-sm-9 content"><%= instagram.content %></p>
-      </div>
-
-      <div class="row">
-        <% user = User.find_by(id: instagram.user_id) %>
-        <p class="col-sm-3">投稿者：<%= user.name %></p>
-        <p class="col-sm-offset-3 col-sm-2 created_at"><%= distance_of_time_in_words_to_now(instagram.created_at) %>前</p>
-        <p class="col-sm-4"><%= link_to '詳細画面', instagram_path(instagram.id), class: "glyphicon glyphicon-align-left" %>
-      </div>
+<p>メールアドレス:
+  <%= @user.email %></p <hr>
+<h3>お気に入りブログ一覧</h3>
+<% @user.favorite_instagrams.order(created_at: :desc).each do |instagram| %>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-preview">
+          <a href="post.html">
+            <h2 class="post-title">
+              <p class="col-sm-6 title"><%= image_tag(instagram.image, :size => "120x80") %></p>
+            </h2>
+            <h3 class="post-subtitle">
+              <p class="col-sm-6 content"><%= instagram.content %></p>
+            </h3>
+          </div>
+        </div>
+      </a>
     </div>
-  <% end %>
+  </div>
+</div>
+</div>
+</div>
+
+<% user = User.find_by(id: instagram.user_id) %>
+<td>投稿者：<%= user.name %>　</td>
+
+<td><%= distance_of_time_in_words_to_now(instagram.created_at) %>前　</td>
+<td><%= link_to '詳細画面', instagram_path(instagram.id) ,class: "glyphicon glyphicon-align-left"%>　</td>
+
+<% end %>
