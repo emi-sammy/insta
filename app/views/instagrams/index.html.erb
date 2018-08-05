@@ -16,7 +16,7 @@
 
     <% user = User.find_by(id: instagram.user_id) %>
       <tr>
-        <td><%= instagram.image %></td>
+        <td><%= image_tag(instagram.image, :size => "80x50") %></td>
         <td><%= instagram.content %></td>
         <td><%= link_to '詳細画面', instagram %></td>
         <td><% if logged_in? && current_user.id == instagram.user_id %>

@@ -1,5 +1,6 @@
 class Instagram < ApplicationRecord
-  validates :content, length: { maximum: 145 } # 145文字以下
+  validates :content, length: { in: 1..140 }
+  validates :image, presence: true
   belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user

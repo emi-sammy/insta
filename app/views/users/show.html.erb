@@ -6,7 +6,7 @@
   <% @user.favorite_instagrams.order(created_at: :desc).each do |instagram| %>
     <div class="panel panel-default">
       <div class="row">
-        <p class="col-sm-3 title"><%= instagram.image %></p>
+        <p class="col-sm-3 title"><%= image_tag(instagram.image, :size => "80x50") %></p>
         <p class="col-sm-9 content"><%= instagram.content %></p>
       </div>
       <div class="row">
