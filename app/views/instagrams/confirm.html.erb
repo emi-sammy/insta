@@ -6,11 +6,11 @@
 <p>本文：<%= @instagram.content %></p>
 <p>画像：<%= image_tag(@instagram.image) %></p>
 
-<p><%= form.submit "シェア",class: "btn btn-primary btn-normal"%></p>
+<p>　　　<%= form.submit "シェア",class: "btn btn-primary btn-normal"%></p>
 <% end %>
 
 <%= form_with(model: @instagram, url:new_instagram_path, local: true, method: 'get') do |form| %>
 <%= form.hidden_field :content %>
 <%= form.hidden_field :image_cache %>
-<%= form.submit "もどる",name: 'back' %>
+<p>　　　<%= form.submit "もどる",name: 'back' ,class: "btn btn-primary btn-normal"%></p>
 <% end %>

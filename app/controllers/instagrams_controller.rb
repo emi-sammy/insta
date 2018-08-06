@@ -35,7 +35,7 @@ class InstagramsController < ApplicationController
     respond_to do |format|
       if @instagram.save
         InstaMailer.insta_mail(@instagram).deliver
-        format.html { redirect_to @instagram, notice: '投稿しました' }
+        format.html { redirect_to instagrams_path, notice: '投稿しました' }
         format.json { render :show, status: :created, location: @instagram }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class InstagramsController < ApplicationController
   def update
     respond_to do |format|
       if @instagram.update(instagram_params)
-        format.html { redirect_to @instagram, notice: 'Instagram was successfully updated.' }
+        format.html { redirect_to instagrams_path, notice: '更新しました' }
         format.json { render :show, status: :ok, location: @instagram }
       else
         format.html { render :edit }

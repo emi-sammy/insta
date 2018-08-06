@@ -10,32 +10,30 @@
 
         <div class="container">
           <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-              <div class="post-preview">
-                <a href="post.html">
-                  <h2 class="post-title">
-                    <%= image_tag(instagram.image, :size => "80x50") %>
-                  </h2>
-                  <h3 class="post-subtitle">
-                    <%= instagram.content %>
-                  </h3>
-                </a>
-              </div>
+            <div class="col-sm-12 col-md-6">
+              <h3 class="post-subtitle">
+                <%= instagram.content %>
+              </h3>
+              <h2 class="post-title">
+                <%= image_tag(instagram.image) %>
+              </h2>
             </div>
           </div>
         </div>
-      </div>
 
-      <td><%= link_to '詳細画面', instagram ,class: "glyphicon glyphicon-align-left" %></td>
-      <td>
-        <% if logged_in? && current_user.id == instagram.user_id %>
-          <%= link_to "編集する", edit_instagram_path(instagram.id), data: { confirm: '編集しますか？' }, class: "glyphicon glyphicon-pencil" %></td>
-        <td><%= link_to '削除する', instagram, method: :delete, data: { confirm: '削除しますか?' } , class: "glyphicon glyphicon-trash"%></td>
-      </tr>
-      <br>
-    <% end %>
-  </tbody>
-</table>
-<% end %>
-<br><br><br>
- <p class="btn btn-primary"><%= link_to 'New Instagram', new_instagram_path %></p>
+        <tr>
+          <td>投稿者：<%= user.name %>
+          </td>
+          <td><%= link_to '詳細画面', instagram ,class: "glyphicon glyphicon-align-left" %></td>
+          <td>
+            <% if logged_in? && current_user.id == instagram.user_id %>
+              <%= link_to "編集する", edit_instagram_path(instagram.id), data: { confirm: '編集しますか？' }, class: "glyphicon glyphicon-pencil" %></td>
+            <td><%= link_to '削除する', instagram, method: :delete, data: { confirm: '削除しますか?' } , class: "glyphicon glyphicon-trash"%></td>
+          </tr>
+          <br>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+  <br><br><br>
+  <p class="btn btn-primary"><%= link_to 'New Instagram', new_instagram_path %></p>

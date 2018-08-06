@@ -16,12 +16,9 @@
   <% else %>
     <%= link_to 'お気に入りする', favorites_path(instagram_id: @instagram.id), method: :post, class: 'btn btn-primary' %>
   <% end %>
-</div>
 <% end %>
-
-
-
-
+<br>
+<br>
 <%= link_to 'Edit', edit_instagram_path(@instagram) %>
 |
 <%= link_to 'Back', instagrams_path %>

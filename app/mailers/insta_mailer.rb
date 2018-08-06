@@ -1,6 +1,7 @@
 class InstaMailer < ApplicationMailer
   def insta_mail(instagram)
     @instagram = instagram
-    mail to: 'emi-sammy@joy.ocn.ne.jp', subject: 'お問い合わせの確認メール'
+    @user = User.find_by(id: @instagram.user_id)
+    mail to: @user.email, subject: 'Instagram投稿完了のお知らせ'
   end
 end
